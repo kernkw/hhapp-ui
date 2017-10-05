@@ -19,6 +19,8 @@ class VenueList extends Component {
   }
 
   componentDidMount() {
+      // remove duplication here
+      // cache page so wont reload each time
       fetch("http://localhost:8080/venue_list?name=Popular")
       .then((response) => response.json())
       .then((responseJson) => {

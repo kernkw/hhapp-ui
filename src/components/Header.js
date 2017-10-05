@@ -3,7 +3,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {blueGrey600} from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar';
-import Search from './Search'
 import LeftDrawer from './LeftDrawer'
 
 const muiTheme = getMuiTheme({

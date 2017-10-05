@@ -37,19 +37,8 @@ class VenueMenu extends Component {
             menu_items: []
         }
     }
-    // componentDidMount() {
-    //     fetch("http://localhost:8080/menu_items?venue_id=" + this.props.venue_id)
-    //         .then((response) => response.json())
-    //         .then((responseJson) => {
-    //             this.setState({ menu_items: responseJson.data });
-    //         })
-    //         .catch((error) => {
-    //             console.error(error);
-    //         });
-    // }
 
     render() {
-        console.log("venue_id", this.props)
         return (
 
             <Paper style={styles.paper}>

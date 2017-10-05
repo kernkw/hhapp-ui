@@ -38,7 +38,7 @@ curl -H "Content-Type: application/json" -d '{"venue_name":"La Cour", "venue_lis
 curl -H "Content-Type: application/json" -d '{"name":"Roof Top"}' http://localhost:8080/create_venue_list
 
 curl -H "Content-Type: application/json" -d '{"name":"Los Chingones", "address": "2463 Larimer St", "city": "Denver", "zip": "80205", "state": "CO", "image": "https://www.totalhappyhour.com/preview/500-450/content/files/mod.happyhour/42959504e05245439bd59f449f106cd7.jpg", "country": "USA"}' http://localhost:8080/create_venue
-curl -H "Content-Type: application/json" -d '{"name":"ViewHouse Eatery, Bar & Rooftop", "address": "2015 Market St", "city": "Denver", "zip": "80205", "state": "CO", "image": "https://www.totalhappyhour.com/preview/500-450/content/files/mod.happyhour/42959504e05245439bd59f449f106cd7.jpg", "country": "USA"}' http://localhost:8080/create_venue
+curl -H "Content-Type: application/json" -d '{"name":"ViewHouse Eatery, Bar & Rooftop", "address": "2015 Market St", "city": "Denver", "zip": "80205", "state": "CO", "image": "http://www.milehighhappyhour.com/wp-content/uploads/2014/02/Viewhouse7-1000x500.jpg", "country": "USA"}' http://localhost:8080/create_venue
 curl -H "Content-Type: application/json" -d '{"name":"Tamayo", "address": "1400 Larimer St", "city": "Denver", "zip": "80202", "state": "CO", "image": "http://www.richardsandoval.com/tamayo/uploads/2014-06-11_11-23_441.jpg", "country": "USA"}' http://localhost:8080/create_venue
 
 
