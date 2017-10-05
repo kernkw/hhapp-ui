@@ -25,7 +25,7 @@ class LeftDrawer extends React.Component {
       <div>
         <Drawer open={this.props.open} onRequestChange={(open) => this.setState({open})}>
           <MenuItem onClick={this.handleClose} containerElement={<Link to="/" />}>Home</MenuItem>
-          <MenuItem onClick={this.handleClose}>My Account</MenuItem>
+          <MenuItem onClick={this.handleClose}>Sign Up(Pending)</MenuItem>
         </Drawer>
       </div>
     );

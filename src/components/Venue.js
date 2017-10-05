@@ -2,14 +2,12 @@ import React, { Component } from 'react'
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import VenueMenu from './VenueMenu'
 
 const styles = {
-    // card: {
-    //     height: 200,
-    // },
     media: {
-        'max-width': '25%',
-        'min-width': '25%',
+        'max-width': '40%',
+        'min-width': '40%',
     },
 };
 
@@ -17,23 +15,33 @@ const venues = []
 
 
 class Venue extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             venue_info: {},
+            menu_items: []
+
         }
-      }
-    
-      componentDidMount() {
-          fetch("http://localhost:8080/venue/" + this.props.match.params.id)
-          .then((response) => response.json())
-          .then((responseJson) => {
-            this.setState({ venue_info: responseJson.data});
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:8080/venue/" + this.props.match.params.id)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({ venue_info: responseJson.data });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        fetch("http://localhost:8080/menu_items?venue_id=" + this.props.match.params.id)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({ menu_items: responseJson.data });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     render() {
         return (
@@ -49,12 +57,9 @@ class Venue extends Component {
                         <img src={this.state.venue_info.image} alt={this.state.venue_info.title} />
                     </CardMedia>
                     {/* <CardTitle title="Card title" subtitle="Card subtitle" /> */}
-                    <CardText>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-          </CardText>
+                    <CardText children={<VenueMenu menu_items={this.state.menu_items} />} />
+
+
                     {/* <CardActions>
                         <FlatButton label="Action1" />
                         <FlatButton label="Action2" />

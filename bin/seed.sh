@@ -1,5 +1,5 @@
-#!/bin/bash
-#Popular
+!/bin/bash
+Popular
 curl -H "Content-Type: application/json" -d '{"name":"Popular"}' http://localhost:8080/create_venue_list
 
 curl -H "Content-Type: application/json" -d '{"name":"The Fainting Goat", "address": "846 Broadway", "city": "Denver", "zip": "80203", "state": "CO", "image": "https://www.totalhappyhour.com/preview/500-450/content/files/mod.happyhour/42959504e05245439bd59f449f106cd7.jpg", "country": "USA"}' http://localhost:8080/create_venue
@@ -46,3 +46,23 @@ curl -H "Content-Type: application/json" -d '{"venue_name":"Los Chingones", "ven
 curl -H "Content-Type: application/json" -d '{"venue_name":"Tamayo", "venue_list_name": "Roof Top"}' http://localhost:8080/venue_list_add
 curl -H "Content-Type: application/json" -d '{"venue_name":"ViewHouse Eatery, Bar & Rooftop", "venue_list_name": "Roof Top"}' http://localhost:8080/venue_list_add
 curl -H "Content-Type: application/json" -d '{"venue_name":"Linger", "venue_list_name": "Roof Top"}' http://localhost:8080/venue_list_add
+
+ 
+for i in {1..12}
+do
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "drink", "price": 5.00, "description": "Local Draft Beer"}' http://localhost:8080/add_menu_item
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "drink", "price": 6.00, "description": "Cocktail"}' http://localhost:8080/add_menu_item
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "drink", "price": 3.00, "description": "You call it"}' http://localhost:8080/add_menu_item
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "drink", "price": 5.00, "description": "Buy one get one"}' http://localhost:8080/add_menu_item
+
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "food", "price": 5.00, "description": "Half off apps"}' http://localhost:8080/add_menu_item
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "food", "price": 2.00, "description": "Tacos"}' http://localhost:8080/add_menu_item
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "food", "price": 4.00, "description": "You call it"}' http://localhost:8080/add_menu_item
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "food", "price": 5.00, "description": "Buy one get one"}' http://localhost:8080/
+    
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "all", "price": 5.00, "description": "Half off apps and drinks"}' http://localhost:8080/add_menu_item
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "all", "price": 2.00, "description": "Tacos and tequila"}' http://localhost:8080/add_menu_item
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "all", "price": 4.00, "description": "You call it"}' http://localhost:8080/add_menu_item
+    curl -H "Content-Type: application/json" -d '{"menu_id": '"$i"', "category": "all", "price": 5.00, "description": "Buy one get one"}' http://localhost:8080/add_menu_item
+done
+
