@@ -17,26 +17,36 @@ const venues = []
 
 
 class Venue extends Component {
+    constructor(){
+        super();
+        this.state = {
+            venue_info: {},
+        }
+      }
+    
+      componentDidMount() {
+          fetch("http://localhost:8080/venue/" + this.props.match.params.id)
+          .then((response) => response.json())
+          .then((responseJson) => {
+            this.setState({ venue_info: responseJson.data});
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+
     render() {
-        let id = this.props.match.params.id
-        console.log('venue_id: ',id)
-        let venue_info = {
-            id: 1,
-            img: 'http://coloradobites.com/wp-content/uploads/2015/05/panzanococktail1.jpg',
-            title: 'Panzano',
-            address: "909 17th St, Denver, CO 80202",
-          }
         return (
             <MuiThemeProvider>
                 <Card >
                     <CardHeader
-                        title={venue_info.title}
-                        subtitle={venue_info.address}
+                        title={this.state.venue_info.name}
+                        subtitle={this.state.venue_info.address + " " + this.state.venue_info.city + " " + this.state.venue_info.zip}
                     />
                     <CardMedia
                         style={styles.media}
                     >
-                        <img src={venue_info.img} alt={venue_info.title} />
+                        <img src={this.state.venue_info.image} alt={this.state.venue_info.title} />
                     </CardMedia>
                     {/* <CardTitle title="Card title" subtitle="Card subtitle" /> */}
                     <CardText>
