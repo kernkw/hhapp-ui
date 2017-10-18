@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import { Card, CardHeader, CardMedia, CardText } from 'material-ui/Card';
+import { isAuthenticated, curUserID } from '../firebase.js';
+import { Card, CardHeader, CardMedia, CardText, CardActions } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import VenueMenu from './VenueMenu'
 
+
 const styles = {
     media: {
-        'max-width': '40%',
-        'min-width': '40%',
+        'maxWidth': '40%',
+        'minWidth': '40%',
     },
 };
 
@@ -15,8 +18,9 @@ class Venue extends Component {
         super();
         this.state = {
             venue_info: {},
-            menu_items: []
-
+            user_favorite: {},
+            menu_items: [],
+            favorited: false,
         }
     }
 
@@ -37,9 +41,59 @@ class Venue extends Component {
             .catch((error) => {
                 console.error(error);
             });
+        if (isAuthenticated()) {
+            fetch("http://localhost:8080/user_favorites/" + this.props.match.params.id + "/" + curUserID)
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    if (responseJson.data) {
+                        this.setState({ favorited: true });
+                        this.setState({ user_favorite: responseJson.data });
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+    }
+
+    addToFavorites() {
+        fetch('http://localhost:8080/create_user_favorite', {
+            method: 'POST',
+            body: JSON.stringify({
+                user_id: curUserID,
+                venue_id: Number(this.props.match.params.id),
+            })
+        })
+        this.setState({ favorited: true });
+    }
+
+    removeFromFavorites(id) {
+        fetch('http://localhost:8080/user_favorite/' + id, {
+            method: 'POST',
+        })
+        this.setState({ favorited: false});
+        this.setState({ user_favorite: {} });
     }
 
     render() {
+        let addToFavs = null;
+        if (isAuthenticated()) {
+            if (!this.state.favorited) {
+                addToFavs = (<CardActions>
+                    <div>
+                        <RaisedButton label="Add To Favorites" onClick={this.addToFavorites.bind(this)} />
+                    </div>
+                </CardActions>)
+            } else {
+                addToFavs = (<CardActions>
+                    <div>
+                        <RaisedButton label="Remove From Favorites" onClick={this.removeFromFavorites.bind(this, this.state.user_favorite.id)} />
+                    </div>
+                </CardActions>)
+            }
+    
+        }
+
         return (
             <MuiThemeProvider>
                 <Card >
@@ -47,19 +101,11 @@ class Venue extends Component {
                         title={this.state.venue_info.name}
                         subtitle={this.state.venue_info.address + " " + this.state.venue_info.city + " " + this.state.venue_info.zip}
                     />
-                    <CardMedia
-                        style={styles.media}
-                    >
+                    <CardMedia style={styles.media}>
                         <img src={this.state.venue_info.image} alt={this.state.venue_info.title} />
                     </CardMedia>
-                    {/* <CardTitle title="Card title" subtitle="Card subtitle" /> */}
+                    {addToFavs}
                     <CardText children={<VenueMenu menu_items={this.state.menu_items} />} />
-
-
-                    {/* <CardActions>
-                        <FlatButton label="Action1" />
-                        <FlatButton label="Action2" />
-                    </CardActions> */}
                 </Card>
             </MuiThemeProvider>
         )

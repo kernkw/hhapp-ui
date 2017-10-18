@@ -3,7 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {blueGrey600} from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar';
-import LeftDrawer from './LeftDrawer'
+import LeftDrawer from './LeftDrawer';
+import Login from './Login';
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -43,6 +44,7 @@ class Header extends Component {
                     title="Denver Happy Hours"
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                     onLeftIconButtonTouchTap={this.toggleDrawer}
+                    iconElementRight={<Login label="SignIn" />}
                 />
                 <LeftDrawer open={this.state.open} handleClose={this.handleClose} onToggleDrawer={this.toggleDrawer}/>
             </MuiThemeProvider>

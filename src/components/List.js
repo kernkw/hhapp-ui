@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { GridList, GridTile } from 'material-ui/GridList';
+import { auth } from '../firebase.js';
 
 const styles = {
   root: {
@@ -16,10 +17,20 @@ const styles = {
 };
 
 class List extends Component {
+  addToFavorites(id) {
+    fetch('http://localhost:8080/create_user_favorite', {
+      method: 'POST',
+      body: JSON.stringify({
+        user_id: auth.currentUser.uid,
+        venue_id: id,
+      })
+    })
+  }
+
   render() {
     return (
       <div style={styles.root}>
-        <GridList style={styles.gridList} cols={2.2}>
+        <GridList style={styles.gridList} cols={2.2} >
           {this.props.tilesData.map((tile) => (
             <GridTile
               containerElement={<Link to={{ pathname: "/venue/" + tile.id }} />}

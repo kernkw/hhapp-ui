@@ -9,6 +9,10 @@ import {
 } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import NumericLabel from 'react-pretty-numbers';
+import FaGlass from 'react-icons/lib/fa/glass';
+import MdLocalPizza from 'react-icons/lib/md/local-pizza';
+import MdLocalRestaurant from 'react-icons/lib/md/local-restaurant'
+
 
 const styles = {
     paper: {
@@ -38,6 +42,18 @@ class VenueMenu extends Component {
         }
     }
 
+
+    setCatIcon(iconName) {
+        switch (iconName) {
+            case "food":
+                return <MdLocalPizza />
+            case "drink":
+                return <FaGlass />
+            default:
+                return <MdLocalRestaurant />
+        }
+    }
+
     render() {
         return (
 
@@ -57,7 +73,7 @@ class VenueMenu extends Component {
                                 <TableRow key={n.id} style={styles.tableRow}>
                                     <TableRowColumn>{n.description}</TableRowColumn>
                                     <TableRowColumn numeric><NumericLabel params={currencyFormat}>{n.price}</NumericLabel></TableRowColumn>
-                                    <TableRowColumn>{n.category}</TableRowColumn>
+                                    <TableRowColumn>{this.setCatIcon(n.category)}</TableRowColumn>
                                 </TableRow>
                             );
                         })}

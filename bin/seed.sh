@@ -10,6 +10,8 @@ curl -H "Content-Type: application/json" -d '{"name":"Linger", "address": "2030 
 curl -H "Content-Type: application/json" -d '{"venue_name":"The Fainting Goat", "venue_list_name": "Popular"}' http://localhost:8080/venue_list_add
 curl -H "Content-Type: application/json" -d '{"venue_name":"Panzano", "venue_list_name": "Popular"}' http://localhost:8080/venue_list_add
 curl -H "Content-Type: application/json" -d '{"venue_name":"Linger", "venue_list_name": "Popular"}' http://localhost:8080/venue_list_add
+curl -H "Content-Type: application/json" -d '{"venue_name":"ViewHouse Eatery, Bar & Rooftop", "venue_list_name": "Popular"}' http://localhost:8080/venue_list_add
+curl -H "Content-Type: application/json" -d '{"venue_name":"Los Chingones", "venue_list_name": "Popular"}' http://localhost:8080/venue_list_add
 
 #Best Drink Specials
 curl -H "Content-Type: application/json" -d '{"name":"Best Drink Specials"}' http://localhost:8080/create_venue_list
@@ -21,6 +23,8 @@ curl -H "Content-Type: application/json" -d '{"name":"Beatrice & Woodsley", "add
 curl -H "Content-Type: application/json" -d '{"venue_name":"Ophelia\u0027s Electric Soapbox", "venue_list_name": "Best Drink Specials"}' http://localhost:8080/venue_list_add
 curl -H "Content-Type: application/json" -d '{"venue_name":"Fado Irish Pub & Restaurant", "venue_list_name": "Best Drink Specials"}' http://localhost:8080/venue_list_add
 curl -H "Content-Type: application/json" -d '{"venue_name":"Beatrice & Woodsley", "venue_list_name": "Best Drink Specials"}' http://localhost:8080/venue_list_add
+curl -H "Content-Type: application/json" -d '{"venue_name":"La Cour", "venue_list_name": "Best Drink Specials"}' http://localhost:8080/venue_list_add
+curl -H "Content-Type: application/json" -d '{"venue_name":"Work & Class", "venue_list_name": "Best Drink Specials"}' http://localhost:8080/venue_list_add
 
 #Best Food Specials
 curl -H "Content-Type: application/json" -d '{"name":"Best Food Specials"}' http://localhost:8080/create_venue_list
@@ -32,6 +36,8 @@ curl -H "Content-Type: application/json" -d '{"name":"La Cour", "address": "1643
 curl -H "Content-Type: application/json" -d '{"venue_name":"Masterpiece Deli", "venue_list_name": "Best Food Specials"}' http://localhost:8080/venue_list_add
 curl -H "Content-Type: application/json" -d '{"venue_name":"Work & Class", "venue_list_name": "Best Food Specials"}' http://localhost:8080/venue_list_add
 curl -H "Content-Type: application/json" -d '{"venue_name":"La Cour", "venue_list_name": "Best Food Specials"}' http://localhost:8080/venue_list_add
+curl -H "Content-Type: application/json" -d '{"venue_name":"Linger", "venue_list_name": "Best Food Specials"}' http://localhost:8080/venue_list_add
+curl -H "Content-Type: application/json" -d '{"venue_name":"Tamayo", "venue_list_name": "Best Food Specials"}' http://localhost:8080/venue_list_add
 
 
 #Roof Top
