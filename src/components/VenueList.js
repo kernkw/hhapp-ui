@@ -21,7 +21,7 @@ class VenueList extends Component {
   componentDidMount() {
       // remove duplication here
       // cache page so wont reload each time
-      fetch("http://localhost:8080/venue_list?name=Popular")
+      fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/venue_list?name=Popular")
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({ popularTilesData: responseJson.data});
@@ -29,7 +29,7 @@ class VenueList extends Component {
       .catch((error) => {
         console.error(error);
       });
-      fetch("http://localhost:8080/venue_list?name=Best%20Drink%20Specials")
+      fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/venue_list?name=Best%20Drink%20Specials")
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({ drinkSpecialsTilesData: responseJson.data});
@@ -37,7 +37,7 @@ class VenueList extends Component {
       .catch((error) => {
         console.error(error);
       });
-      fetch("http://localhost:8080/venue_list?name=Best%20Food%20Specials")
+      fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/venue_list?name=Best%20Food%20Specials")
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({ foodSpecialsTilesData: responseJson.data});
@@ -45,7 +45,7 @@ class VenueList extends Component {
       .catch((error) => {
         console.error(error);
       });
-      fetch("http://localhost:8080/venue_list?name=Roof%20Top")
+      fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/venue_list?name=Roof%20Top")
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({ roofTopTilesData: responseJson.data});

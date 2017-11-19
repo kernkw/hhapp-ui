@@ -37,7 +37,7 @@ class Account extends Component {
 
     componentDidMount() {
         if (isAuthenticated) {
-            fetch("http://localhost:8080/user_favorites?user_id=" + curUserID)
+            fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/user_favorites?user_id=" + curUserID)
                 .then((response) => response.json())
                 .then((responseJson) => {
                     this.setState({ userFavorites: responseJson.data });

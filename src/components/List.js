@@ -18,7 +18,7 @@ const styles = {
 
 class List extends Component {
   addToFavorites(id) {
-    fetch('http://localhost:8080/create_user_favorite', {
+    fetch('http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/create_user_favorite', {
       method: 'POST',
       body: JSON.stringify({
         user_id: auth.currentUser.uid,
