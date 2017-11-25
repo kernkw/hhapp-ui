@@ -1,5 +1,7 @@
 language: node_js
 node_js:
   - "7"
+before-script:
+  - yarn global add react-deploy-s3
 script:
   - bin/deploy.sh
