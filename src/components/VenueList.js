@@ -8,7 +8,7 @@ import List from './List'
  * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
  */
 class VenueList extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       popularTilesData: [],
@@ -19,36 +19,37 @@ class VenueList extends Component {
   }
 
   componentDidMount() {
-      // remove duplication here
-      // cache page so wont reload each time
-      fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/venue_list?name=Popular")
+    // remove duplication here
+    // cache happy hours so page wont reload each time
+    fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/venue_list?name=Popular")
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({ popularTilesData: responseJson.data});
+        this.setState({ popularTilesData: responseJson.data });
+        console.log(responseJson.data);
       })
       .catch((error) => {
         console.error(error);
       });
-      fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/venue_list?name=Best%20Drink%20Specials")
+    fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/venue_list?name=Best%20Drink%20Specials")
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({ drinkSpecialsTilesData: responseJson.data});
+        this.setState({ drinkSpecialsTilesData: responseJson.data });
       })
       .catch((error) => {
         console.error(error);
       });
-      fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/venue_list?name=Best%20Food%20Specials")
+    fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/venue_list?name=Best%20Food%20Specials")
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({ foodSpecialsTilesData: responseJson.data});
+        this.setState({ foodSpecialsTilesData: responseJson.data });
       })
       .catch((error) => {
         console.error(error);
       });
-      fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/venue_list?name=Roof%20Top")
+    fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/venue_list?name=Roof%20Top")
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({ roofTopTilesData: responseJson.data});
+        this.setState({ roofTopTilesData: responseJson.data });
       })
       .catch((error) => {
         console.error(error);
@@ -57,8 +58,8 @@ class VenueList extends Component {
 
   render() {
     return (
- 
       <MuiThemeProvider>
+        <div>
         <Subheader>Popular</Subheader>
         <List tilesData={this.state.popularTilesData} />
         <Subheader>Best Drink Specials</Subheader>
@@ -67,6 +68,7 @@ class VenueList extends Component {
         <List tilesData={this.state.foodSpecialsTilesData} />
         <Subheader>Roof Top</Subheader>
         <List tilesData={this.state.roofTopTilesData} />
+        </div>
       </MuiThemeProvider>
     );
   }

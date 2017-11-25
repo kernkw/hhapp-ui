@@ -25,7 +25,7 @@ class Venue extends Component {
     }
 
     componentDidMount() {
-        fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/venue/" + this.props.match.params.id)
+        fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/venue/" + this.props.match.params.id)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({ venue_info: responseJson.data });
@@ -33,7 +33,7 @@ class Venue extends Component {
             .catch((error) => {
                 console.error(error);
             });
-        fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/menu_items?venue_id=" + this.props.match.params.id)
+        fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/menu_items?venue_id=" + this.props.match.params.id)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({ menu_items: responseJson.data });
@@ -42,7 +42,7 @@ class Venue extends Component {
                 console.error(error);
             });
         if (isAuthenticated()) {
-            fetch("http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/user_favorites/" + this.props.match.params.id + "/" + curUserID)
+            fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/user_favorites/" + this.props.match.params.id + "/" + curUserID)
                 .then((response) => response.json())
                 .then((responseJson) => {
                     if (responseJson.data) {
@@ -57,7 +57,7 @@ class Venue extends Component {
     }
 
     addToFavorites() {
-        fetch('http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/create_user_favorite', {
+        fetch('http://apihhapp-env.us-west-2.elasticbeanstalk.com/create_user_favorite', {
             method: 'POST',
             body: JSON.stringify({
                 user_id: curUserID,
@@ -68,7 +68,7 @@ class Venue extends Component {
     }
 
     removeFromFavorites(id) {
-        fetch('http://hhapp-api-v1-env.us-west-2.elasticbeanstalk.com/user_favorite/' + id, {
+        fetch('http://apihhapp-env.us-west-2.elasticbeanstalk.com/user_favorite/' + id, {
             method: 'POST',
         })
         this.setState({ favorited: false});
@@ -95,7 +95,7 @@ class Venue extends Component {
         }
 
         return (
-            <MuiThemeProvider>
+
                 <Card >
                     <CardHeader
                         title={this.state.venue_info.name}
@@ -107,7 +107,7 @@ class Venue extends Component {
                     {addToFavs}
                     <CardText children={<VenueMenu menu_items={this.state.menu_items} />} />
                 </Card>
-            </MuiThemeProvider>
+        
         )
     }
 }

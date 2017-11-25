@@ -25,7 +25,9 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
+      <div>
         <Layout />
+        </div>
       </MuiThemeProvider>
     );
   }
