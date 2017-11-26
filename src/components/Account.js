@@ -37,7 +37,7 @@ class Account extends Component {
 
     componentDidMount() {
         if (isAuthenticated) {
-            fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/user_favorites?user_id=" + curUserID)
+            fetch(process.env.REACT_APP_API_URL + "/user_favorites?user_id=" + curUserID)
                 .then((response) => response.json())
                 .then((responseJson) => {
                     this.setState({ userFavorites: responseJson.data });
@@ -87,7 +87,7 @@ class Account extends Component {
                                         key={venue.id}
                                         title={venue.name}
                                     >
-                                        <img src={venue.image} alt={venue.name}/>
+                                        <img src={venue.image} alt={venue.name} />
                                     </GridTile>
                                 ))}
                             </GridList>

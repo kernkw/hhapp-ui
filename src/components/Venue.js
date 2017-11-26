@@ -25,7 +25,8 @@ class Venue extends Component {
     }
 
     componentDidMount() {
-        fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/venue/" + this.props.match.params.id)
+        let url = process.env.REACT_APP_API_URL
+        fetch(url + "/venue/" + this.props.match.params.id)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({ venue_info: responseJson.data });
@@ -33,7 +34,7 @@ class Venue extends Component {
             .catch((error) => {
                 console.error(error);
             });
-        fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/menu_items?venue_id=" + this.props.match.params.id)
+        fetch(url + "/menu_items?venue_id=" + this.props.match.params.id)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({ menu_items: responseJson.data });
@@ -42,7 +43,7 @@ class Venue extends Component {
                 console.error(error);
             });
         if (isAuthenticated()) {
-            fetch("http://apihhapp-env.us-west-2.elasticbeanstalk.com/user_favorites/" + this.props.match.params.id + "/" + curUserID)
+            fetch(url + "/user_favorites/" + this.props.match.params.id + "/" + curUserID)
                 .then((response) => response.json())
                 .then((responseJson) => {
                     if (responseJson.data) {
@@ -57,7 +58,7 @@ class Venue extends Component {
     }
 
     addToFavorites() {
-        fetch('http://apihhapp-env.us-west-2.elasticbeanstalk.com/create_user_favorite', {
+        fetch(process.env.REACT_APP_API_URL + '/create_user_favorite', {
             method: 'POST',
             body: JSON.stringify({
                 user_id: curUserID,
@@ -68,10 +69,10 @@ class Venue extends Component {
     }
 
     removeFromFavorites(id) {
-        fetch('http://apihhapp-env.us-west-2.elasticbeanstalk.com/user_favorite/' + id, {
+        fetch(process.env.REACT_APP_API_URL + '/user_favorite/' + id, {
             method: 'POST',
         })
-        this.setState({ favorited: false});
+        this.setState({ favorited: false });
         this.setState({ user_favorite: {} });
     }
 
@@ -91,23 +92,23 @@ class Venue extends Component {
                     </div>
                 </CardActions>)
             }
-    
+
         }
 
         return (
 
-                <Card >
-                    <CardHeader
-                        title={this.state.venue_info.name}
-                        subtitle={this.state.venue_info.address + " " + this.state.venue_info.city + " " + this.state.venue_info.zip}
-                    />
-                    <CardMedia style={styles.media}>
-                        <img src={this.state.venue_info.image} alt={this.state.venue_info.title} />
-                    </CardMedia>
-                    {addToFavs}
-                    <CardText children={<VenueMenu menu_items={this.state.menu_items} />} />
-                </Card>
-        
+            <Card >
+                <CardHeader
+                    title={this.state.venue_info.name}
+                    subtitle={this.state.venue_info.address + " " + this.state.venue_info.city + " " + this.state.venue_info.zip}
+                />
+                <CardMedia style={styles.media}>
+                    <img src={this.state.venue_info.image} alt={this.state.venue_info.title} />
+                </CardMedia>
+                {addToFavs}
+                <CardText children={<VenueMenu menu_items={this.state.menu_items} />} />
+            </Card>
+
         )
     }
 }
